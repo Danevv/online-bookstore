@@ -9,9 +9,12 @@ import { BookService } from './services/book.service';
 import { RouterModule, Routes } from "@angular/router";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BookCategoryComponent } from './components/book-category/book-category.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchNotFoundComponent } from './components/search-not-found/search-not-found.component';
 
 const routes: Routes = [
   {path: 'books', component: BookListComponent},
+  {path: 'search/:keyword', component: BookListComponent},
   {path: 'category/:id', component: BookListComponent},
   {path: '', redirectTo: '/books', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
@@ -22,7 +25,9 @@ const routes: Routes = [
     AppComponent,
     BookListComponent,
     PageNotFoundComponent,
-    BookCategoryComponent
+    BookCategoryComponent,
+    SearchComponent,
+    SearchNotFoundComponent
   ],
   imports: [
     BrowserModule,

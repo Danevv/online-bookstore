@@ -23,6 +23,9 @@
             </div>
           </div>
         </div>
+        <div *ngIf="books?.length == 0">
+          <app-search-not-found></app-search-not-found>
+        </div>
   </div>
 
     <!-- /.col-lg-9 -->
