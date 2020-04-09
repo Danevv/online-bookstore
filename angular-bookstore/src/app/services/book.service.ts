@@ -10,9 +10,9 @@ import { BookCategory } from '../common/book-category';
 })
 export class BookService {
 
-  private baseUrl = "http://localhost:9090/api/v1/books";
+  private baseUrl = "http://jenkins-server.ddns.net:49090/api/v1/books";
 
-  private categoryUrl = "http://localhost:9090/api/v1/book-category";
+  private categoryUrl = "http://jenkins-server.ddns.net:49090/api/v1/book-category";
 
 
   constructor(private httpClient: HttpClient ) { }
