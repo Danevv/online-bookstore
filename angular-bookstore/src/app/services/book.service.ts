@@ -10,9 +10,9 @@ import { BookCategory } from '../common/book-category';
 })
 export class BookService {
 
-  private baseUrl = "http://localhost:8080/api/v1/books";
+  private baseUrl = "http://localhost:9090/api/v1/books";
 
-  private categoryUrl = "http://localhost:8080/api/v1/book-category";
+  private categoryUrl = "http://localhost:9090/api/v1/book-category";
 
 
   constructor(private httpClient: HttpClient ) { }
@@ -44,7 +44,10 @@ export class BookService {
     return this.getBookList(searchUrl);
   }
 
-
+  getBookDetails(bookId:number): Observable<Book>{
+    const bookDetailsUrl = `${this.baseUrl}/${bookId}`;
+    return this.httpClient.get<Book>(bookDetailsUrl);
+  }
 }
 
 interface GetResponseBooks{
