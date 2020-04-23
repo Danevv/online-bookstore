@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { BookService } from './services/book.service';
+import { JwPaginationComponent } from 'jw-angular-pagination';
 
 import { RouterModule, Routes } from "@angular/router";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -30,7 +31,8 @@ const routes: Routes = [
     BookCategoryComponent,
     SearchComponent,
     SearchNotFoundComponent,
-    BookDetailsComponent
+    BookDetailsComponent,
+    JwPaginationComponent
   ],
   imports: [
     BrowserModule,
