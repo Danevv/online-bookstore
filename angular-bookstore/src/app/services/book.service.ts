@@ -17,17 +17,23 @@ export class BookService {
 
   constructor(private httpClient: HttpClient ) { }
 
-  getBooks(theCategoryId: number): Observable<Book[]>{
-    const searchUrl = `${this.baseUrl}/search/categoryId?id=${theCategoryId}`;
-    return this.getBookList(searchUrl);
+  getBooks(theCategoryId: number, currentPage: number, pageSize: number): Observable<GetResponseBooks>{
+    const searchUrl = `${this.baseUrl}/search/categoryId?id=${theCategoryId}&page=${currentPage}&size=${pageSize}`;
+    return this.httpClient.get<GetResponseBooks>(searchUrl);
   }
 
   private getBookList(searchUrl: string): Observable<Book[]> {
     return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(map(response => response._embedded.books));
   }
 
-  getBooks2(): Observable<Book[]>{
-    const searchUrl = `${this.baseUrl}?size=100`;
+  getBooks2(currentPage: number, pageSize: number): Observable<GetResponseBooks>{
+    const searchUrl = `${this.baseUrl}/search/findByName?name=&page=${currentPage}&size=${pageSize}`;
+    return this.httpClient.get<GetResponseBooks>(searchUrl);
+  }
+
+  //old method unused for displaying all books without pagination
+  getBooks3(): Observable<Book[]>{
+    const searchUrl = `${this.baseUrl}`;
     return this.httpClient.get<GetResponseBooks>(searchUrl).pipe(
       map(response => response._embedded.books)
     );
@@ -39,9 +45,10 @@ export class BookService {
     );
   }
 
-  searchBooks(keyword: string): Observable<Book[]>{
-    const searchUrl = `${this.baseUrl}/search/findByName?name=${keyword}`;
-    return this.getBookList(searchUrl);
+  searchBooks(keyword: string, currentPage: number, pageSize: number): Observable<GetResponseBooks>{
+    const searchUrl = `${this.baseUrl}/search/findByName?name=${keyword}&page=${currentPage}&size=${pageSize}`;
+    return this.httpClient.get<GetResponseBooks>(searchUrl);
+  
   }
 
   getBookDetails(bookId:number): Observable<Book>{
@@ -53,6 +60,16 @@ export class BookService {
 interface GetResponseBooks{
   _embedded: {
     books: Book[];
+  },
+  page: {
+    //num of ell in each page
+    size: number,
+    //total num of rec in database
+    totalElements: number,
+    //starts from 0 index
+    tozalPages: number,
+    //curr page
+    number: number
   }
 }
 

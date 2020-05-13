@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { BookService } from './services/book.service';
-import { JwPaginationComponent } from 'jw-angular-pagination';
+//import { JwPaginationComponent } from 'jw-angular-pagination';
 
 import { RouterModule, Routes } from "@angular/router";
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -32,11 +33,12 @@ const routes: Routes = [
     SearchComponent,
     SearchNotFoundComponent,
     BookDetailsComponent,
-    JwPaginationComponent
+    //JwPaginationComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgbModule,
     RouterModule.forRoot(routes)
   ],
   providers: [
